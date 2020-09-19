@@ -7,12 +7,8 @@ module.exports = function (app){
     fs.readFile("./db/db.json","utf8", function (err, data){
         if (err) throw err;
         var notesParse = JSON.parse(data);
-
         console.log(notesParse);
-        // console.log(notesParse[1]);
-        // notesParse.splice(0,1);
-        // console.log(notesParse);
-
+  
         app.get("/api/notes", function (req, res) {
             //db.json file and return of all saved notes as json
             res.json(notesParse);
@@ -37,7 +33,6 @@ module.exports = function (app){
             fs.writeFile("./db/db.json", notesParse , function(err){
                 if(err) throw (err);
                 console.log(`The note was deleted`);
-                // console.log(`The new DB is: ${notesParse}`);
    
             });
 
