@@ -5,19 +5,16 @@ var path = require("path");
 
 //EXPRESS APP
 var app = express();
-var PORT = 8080;
+var PORT = process.env.PORT || 3000;
 
 //Set up parsing handling
 app.use(express.urlencoded ({extended: true}));
 app.use(express.json());
+app.use(express.static(__dirname));
 
 //ROUTES
 require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes")(app);
-
-// app.get("/", function(req,res){
-//     res.sendFile(path.join(__dirname + "/public/index.html"));
-// });
 
 //SERVER HANDLE
 
